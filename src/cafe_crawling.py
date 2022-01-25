@@ -32,14 +32,17 @@ def crawl(target_url):
     time.sleep(3)
     soup = bs(driver.page_source, 'html.parser')
 
-    for page in range(4):
+    for page in range(3):
         time.sleep(8)
         print(
-            len(soup.find_all("a", {"class": "a4gq8e-aVTXAb-haAclf-jRmmHf-hSRGPd"})))
-        if(page == 1):
-            for cafe in soup.find_all("a", {"class": "a4gq8e-aVTXAb-haAclf-jRmmHf-hSRGPd"}):
+            len(soup.find_all("a", {"class": "_3nCBm"})))
+        if(True):
+            for cafe in soup.find_all("a", {"class": "_3nCBm"}):
                 cafeObj = {}
+                driver.find_elements_by_css_selector(
+                    'span.ODSEW-ShBeI-H1e3jb')
                 url = cafe.get('href')
+                print(url)
                 driver.get(url)
                 soup1 = bs(driver.page_source, 'html.parser')
 
@@ -167,20 +170,20 @@ def crawl(target_url):
             soup = bs(driver.page_source, 'html.parser')
 
         middleObj = {}
-        middleObj['카페'] = cafeArr
+        middleObj['술집'] = cafeArr
         print(middleObj)
-        with open('doit-cafe11' + str(page+1) + '.json', 'w') as f:
+        with open('doit-beer' + str(page+1) + '.json', 'w') as f:
             json.dump(middleObj, f, ensure_ascii=False)
 
     finalObj = {}
-    finalObj['카페'] = cafeArr
+    finalObj['술집'] = cafeArr
 
-    with open('doit-cafe' + '.json', 'w') as f:
+    with open('doit-beer' + '.json', 'w') as f:
         json.dump(finalObj, f, ensure_ascii=False)
 
 
 crawl(
-    'https://www.google.co.kr/maps/search/%EC%95%84%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90+%EC%A3%BC%EB%B3%80+%EC%B9%B4%ED%8E%98/@37.2797233,127.0425144,17z/data=!3m1!4b1?hl=ko')
+    'https://www.google.co.kr/maps/search/%EC%95%84%EC%A3%BC%EB%8C%80+%EA%B7%BC%EC%B2%98+%EC%88%A0%EC%A7%91/@37.2771475,127.0419173,17z/data=!3m1!4b1?hl=ko')
 
 # time.sleep(2)
 
